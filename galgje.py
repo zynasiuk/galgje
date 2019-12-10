@@ -13,16 +13,12 @@ double_letter = 0
 while len(vijf_te_raden_worden) > 0 and play == True:
     te_raden = random.choice(vijf_te_raden_worden)
     woord = te_raden.upper()
-
-    for i in woord:
-        i = "_"
-        guessing_word.append(i)
+    guessing_word = ["_" for i in woord]
 
     guessing_word_str = ''.join([str(element) for element in guessing_word])
     print(woord)
 
     print("I'm thinking about some color, it's... Try to guess name of it! Try with 1 letter.")
-
     while woord != guessing_word_str and kansen > 0:
         print("You have " +str(kansen)+ " tries. " + guessing_word_str)
         invoer = (input("Which color it could be? ")).upper()
@@ -48,6 +44,7 @@ while len(vijf_te_raden_worden) > 0 and play == True:
         else:
             print("ONLY 1 LETTER!")
 
+
     if guessing_word_str == woord :
         print("Yes, it is "+ guessing_word_str +"! Congrats!")
         geraden += 1
@@ -59,7 +56,6 @@ while len(vijf_te_raden_worden) > 0 and play == True:
             if new_game == "N":
                 play == False
                 break
-
 
     else:
         print("Sorry, you lost!")
