@@ -1,14 +1,14 @@
 import random
 import string
 alfa = string.ascii_uppercase
-vijf_te_raden_worden = ['black', 'red', 'pink', 'blue', 'white']
+vijf_te_raden_worden = ['green', 'red', 'pink', 'blue', 'white']
 kansen = 5
 invoer = ""
 guessing_word=[]
 list_of_tries=[]
 geraden = 0
 play = True
-
+double_letter = 0
 
 while len(vijf_te_raden_worden) > 0 and play == True:
     te_raden = random.choice(vijf_te_raden_worden)
@@ -29,11 +29,15 @@ while len(vijf_te_raden_worden) > 0 and play == True:
 
         if len(invoer) == 1:
             if invoer in alfa:
-                for i in woord:
-                    if i == invoer:
-                        index_number = woord.find(i)
-                        guessing_word[index_number]= i
+                for i in range(len(woord)):
+                    if woord[i] == invoer:
+                        guessing_word[i] = invoer
                         kansen += 1
+                        double_letter = guessing_word.count(invoer)
+                        #print(double_letter)
+                        if double_letter > 1:
+                            kansen -= 1;
+
 
                 kansen -= 1
                 guessing_word_str = ''.join([str(element) for element in guessing_word])
@@ -52,7 +56,7 @@ while len(vijf_te_raden_worden) > 0 and play == True:
         list_of_tries.clear()
         if len(vijf_te_raden_worden) > 0:
             new_game=(input("One more time? Press any key for yes / N for no: ")).upper()
-            if new_game == "N" and len(vijf_te_raden_worden) > 0:
+            if new_game == "N":
                 play == False
                 break
 
